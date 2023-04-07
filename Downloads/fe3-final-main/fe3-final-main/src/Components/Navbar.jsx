@@ -1,16 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import routes from '../Routes/routes';
+import { useGlobalContext } from '../utils';
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
-
+// Este componente deberá ser estilado como "dark" o "light" dependiendo del theme del Context
 const Navbar = () => {
+  const { tema, cambiartema } = useGlobalContext();
 
   return (
     <nav>
-      {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-      {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-      <button>Change theme</button>
+      {/* Aquí deberán agregar los links correspondientes a las rutas definidas */}
+      {/* Deberán implementar además la lógica para cambiar de Theme con el botón */}
+      <ul>
+        <li><Link to={routes.home}>Home</Link></li>
+        <li><Link to={routes.favs}>Favs</Link></li>
+        <li><Link to={routes.contact}>Contact</Link></li>
+        <li><Link to={routes.detail}>Detail</Link></li>
+      </ul>
+      <button onClick={cambiartema}>Change theme</button>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
