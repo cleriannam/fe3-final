@@ -1,31 +1,35 @@
-import React, { useState } from 'react'
-import Card from '../Components/Card'
+import React, { useState, useContext } from "react";
+import Card from "../Components/Card";
+import { ThemeContext } from "../context/theme.context";
 
-// Este componente deberá ser estilado como "dark" o "light" dependiendo del theme del Context
 const Home = () => {
-  const [favoriteCards, setFavoriteCards] = useState([])
+  const [favoriteCards, setFavoriteCards] = useState(
+    JSON.parse(localStorage.getItem("favoriteCards")) || []
+  );
+  const { theme } = useContext(ThemeContext);
 
   const addFavoriteCard = (card) => {
-    const updatedFavoriteCards = [...favoriteCards, card]
-    setFavoriteCards(updatedFavoriteCards)
-    localStorage.setItem('favoriteCards', JSON.stringify(updatedFavoriteCards))
-  }
+    const updatedFavoriteCards = [...favoriteCards, card];
+    setFavoriteCards(updatedFavoriteCards);
+    localStorage.setItem("favoriteCards", JSON.stringify(updatedFavoriteCards));
+  };
 
   const removeFavoriteCard = (card) => {
-    const updatedFavoriteCards = favoriteCards.filter(favCard => favCard.id !== card.id)
-    setFavoriteCards(updatedFavoriteCards)
-    localStorage.setItem('favoriteCards', JSON.stringify(updatedFavoriteCards))
-  }
+    const updatedFavoriteCards = favoriteCards.filter(
+      (favCard) => favCard.id !== card.id
+    );
+    setFavoriteCards(updatedFavoriteCards);
+    localStorage.setItem("favoriteCards", JSON.stringify(updatedFavoriteCards));
+  };
 
   const isCardFavorited = (card) => {
-    return favoriteCards.some(favCard => favCard.id === card.id)
-  }
+    return favoriteCards.some((favCard) => favCard.id === card.id);
+  };
 
   return (
-    <main className="">
+    <main className={`main ${theme}`}>
       <h1>Home</h1>
-      <div className='card-grid'>
-        {/* Aquí deberías renderizar las cards */}
+      <div className="card-grid">
         <Card
           name="Name1"
           username="Username1"
@@ -52,7 +56,7 @@ const Home = () => {
         />
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

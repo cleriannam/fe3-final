@@ -8,7 +8,7 @@ const Card = ({ name, username, id }) => {
     const existingFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const newFavorite = { id, name, username };
     const updatedFavorites = [...existingFavorites, newFavorite];
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    localStorage.setItem("favs", JSON.stringify(updatedFavorites));
   };
 
   return (

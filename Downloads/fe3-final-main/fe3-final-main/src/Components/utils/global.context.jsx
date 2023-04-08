@@ -4,6 +4,8 @@ export const initialState = { theme: "", data: [], favs: [] };
 
 export const GlobalContext = createContext(initialState);
 
+export const ContextGlobal = createContext();
+
 export const useGlobalContext = () => useContext(GlobalContext);
 
 export const GlobalProvider = ({ children }) => {
@@ -17,7 +19,7 @@ export const GlobalProvider = ({ children }) => {
     }
   }, []);
   
-  const cambiarTema = (theme) => {
+  const cambiarTema = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark");
   };
 
@@ -25,11 +27,13 @@ export const GlobalProvider = ({ children }) => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
 
-  const tema = useMemo(() => ({ cambiarTema }), [theme]);
+  const memoizedValue = useMemo(() => ({ cambiarTema }), [theme]);
 
   return (
-    <GlobalContext.Provider value={{ tema, setTheme }}>
-      {children}
+    <GlobalContext.Provider value={{ theme, favs, setFavs }}>
+      <ContextGlobal.Provider value={memoizedValue}>
+        {children}
+      </ContextGlobal.Provider>
     </GlobalContext.Provider>
   );
 };
