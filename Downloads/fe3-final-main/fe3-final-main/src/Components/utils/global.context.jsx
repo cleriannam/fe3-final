@@ -1,12 +1,22 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-export const initialState = { theme: "", data: [] };
+export const initialState = { theme: "", data: [], favs: [] };
 
-export const ContextGlobal = createContext(undefined);
+export const GlobalContext = createContext(initialState);
 
-export const ContextProvider = ({ children }) => {
+export const useGlobalContext = () => useContext(GlobalContext);
+
+export const GlobalProvider = ({ children }) => {
   const [theme, setTheme] = useState(initialState.theme);
+  const [favs, setFavs] = useState(initialState.favs);
 
+  useEffect(() => {
+    const storedFavs = JSON.parse(localStorage.getItem("favs"));
+    if (storedFavs) {
+      setFavs(storedFavs);
+    }
+  }, []);
+  
   const cambiarTema = (theme) => {
     theme === "dark" ? setTheme("light") : setTheme("dark");
   };
@@ -18,10 +28,8 @@ export const ContextProvider = ({ children }) => {
   const tema = useMemo(() => ({ cambiarTema }), [theme]);
 
   return (
-    <ContextGlobal.Provider value={{ tema, setTheme }}>
+    <GlobalContext.Provider value={{ tema, setTheme }}>
       {children}
-    </ContextGlobal.Provider>
+    </GlobalContext.Provider>
   );
 };
-
-export const useGlobalContext = () => useContext(ContextGlobal);

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import Contact from './routes/Contact';
-import Detail from './routes/Detail';
-import Favs from './routes/Favs';
-import Home from './routes/Home';
+import Footer from './Components/Footer';
+import Navbar from './Components/Navbar';
+import Contact from './Routes/Contact';
+import Detail from './Routes/Detail';
+import Favs from './routes/favs';
+import Home from './Routes/Home';
 import routes from './Routes/routes';
-import  {useGlobalContext} from './Routes/routes';
-
 
 function App() {
   return (

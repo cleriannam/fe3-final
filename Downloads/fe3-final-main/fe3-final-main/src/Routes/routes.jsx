@@ -1,3 +1,4 @@
+
 const routes = {
     home: '/',
     detail: '/detail',

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { useDentistsStates } from '../context/dentists';
+import { useDentists } from '../context/dentists';
 import { useContext } from 'react';
-import { ContextGlobal } from '../context/global';
+import { ContextGlobal } from 'utils/global.context';
 
 // Este componente deberá ser estilado como "dark" o "light" dependiendo del theme del Context
 const Detail = () => {
-  const { dentists } = useDentistsStates();
+  const { dentists } = useDentists();
   const { id } = useParams();
   const url = `https://jsonplaceholder.typicode.com/users/${id}`;
   const [dentistSelected, setDentistSelected] = useState({});
