@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useDentists } from '../context/dentists';
 import { useContext } from 'react';
-import { ContextGlobal } from 'utils/global.context';
+import { ContextGlobal } from '../../Components/utils/global.context';
 
 // Este componente deberá ser estilado como "dark" o "light" dependiendo del theme del Context
 const Detail = () => {
