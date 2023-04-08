@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../Routes/routes';
-import { useGlobalContext } from '../Components/utils/global.context';
+import { useTheme } from '../context/theme.context';
 
 const Navbar = () => {
-  const { tema, setTheme } = useGlobalContext();
+  const { theme, setTheme } = useTheme();
 
   const cambiarTema = () => {
-    tema === "dark" ? setTheme("light") : setTheme("dark");
+    theme === "dark" ? setTheme("light") : setTheme("dark");
   };
 
   return (
